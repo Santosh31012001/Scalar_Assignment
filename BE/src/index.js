@@ -18,6 +18,11 @@ app.get('/', (req, res) => {
     res.json({ message: 'Welcome to Scalar Assignment' });
 });
 
+// API Routes
+const eventTypesRoutes = require('./routes/eventTypes');
+app.use('/api/event-types', eventTypesRoutes);
+
+
 // Database health check endpoint
 app.get('/health', async (req, res) => {
     try {
