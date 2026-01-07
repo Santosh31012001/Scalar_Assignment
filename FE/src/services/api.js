@@ -19,4 +19,11 @@ export const eventTypesAPI = {
     delete: (id) => api.delete(`/api/event-types/${id}`),
 };
 
+// Availability API
+export const availabilityAPI = {
+    getTimezones: () => api.get('/api/availability/timezones'),
+    get: () => api.get('/api/availability'),
+    upsert: (data) => api.post('/api/availability', data),
+};
+
 export default api;

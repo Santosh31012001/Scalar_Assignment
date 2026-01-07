@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import EventTypes from './pages/EventTypes';
+import Availability from './pages/Availability';
 import './App.css';
 
 function App() {
@@ -19,6 +20,12 @@ function App() {
                 >
                   Event Types
                 </Link>
+                <Link
+                  to="/availability"
+                  className="text-foreground hover:text-primary transition-colors"
+                >
+                  Availability
+                </Link>
               </div>
             </div>
           </div>
@@ -33,15 +40,24 @@ function App() {
               <p className="text-muted-foreground mb-8">
                 A Calendly-like scheduling application
               </p>
-              <Link
-                to="/event-types"
-                className="inline-block px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity"
-              >
-                Manage Event Types
-              </Link>
+              <div className="flex gap-4">
+                <Link
+                  to="/event-types"
+                  className="inline-block px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition-opacity"
+                >
+                  Manage Event Types
+                </Link>
+                <Link
+                  to="/availability"
+                  className="inline-block px-6 py-3 bg-secondary text-secondary-foreground rounded-lg hover:opacity-90 transition-opacity"
+                >
+                  Set Availability
+                </Link>
+              </div>
             </div>
           } />
           <Route path="/event-types" element={<EventTypes />} />
+          <Route path="/availability" element={<Availability />} />
         </Routes>
       </div>
     </Router>
