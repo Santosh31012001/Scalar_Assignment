@@ -13,7 +13,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 // Middleware
 app.use(cors(
     {
-        origin: "https://scalar-assignment-eight.vercel.app/",
+        origin: "https://scalar-assignment-eight.vercel.app",
         credentials: true
     }
 ));
