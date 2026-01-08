@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import EventTypes from './pages/EventTypes';
 import Availability from './pages/Availability';
+import BookingPage from './pages/BookingPage';
+import BookingConfirmation from './pages/BookingConfirmation';
 import './App.css';
 
 function App() {
@@ -58,6 +60,8 @@ function App() {
           } />
           <Route path="/event-types" element={<EventTypes />} />
           <Route path="/availability" element={<Availability />} />
+          <Route path="/book/:slug" element={<BookingPage />} />
+          <Route path="/booking/confirmation/:id" element={<BookingConfirmation />} />
         </Routes>
       </div>
     </Router>

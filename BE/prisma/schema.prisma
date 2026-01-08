@@ -14,13 +14,14 @@ datasource db {
 }
 
 model EventType {
-  id          String   @id @default(uuid())
+  id          String    @id @default(uuid())
   name        String
   duration    Int
-  slug        String   @unique
+  slug        String    @unique
   description String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  bookings    Booking[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 model Availability {
@@ -29,4 +30,21 @@ model Availability {
   weeklySchedule Json
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+}
+
+model Booking {
+  id            String    @id @default(uuid())
+  eventTypeId   String
+  eventType     EventType @relation(fields: [eventTypeId], references: [id], onDelete: Cascade)
+  inviteeName   String
+  inviteeEmail  String
+  startTime     DateTime
+  endTime       DateTime
+  notes         String?
+  status        String    @default("confirmed") // confirmed, cancelled
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  @@index([eventTypeId])
+  @@index([startTime])
 }
