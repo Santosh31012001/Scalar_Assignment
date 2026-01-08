@@ -34,7 +34,7 @@ const createEventType = async (req, res) => {
 
         res.status(201).json({
             ...eventType,
-            bookingUrl: `${process.env.FRONTEND_URL || 'http://localhost:5174'}/book/${eventType.slug}`
+            bookingUrl: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/book/${eventType.slug}`
         });
     } catch (error) {
         console.error('Error creating event type:', error);
@@ -51,7 +51,7 @@ const getAllEventTypes = async (req, res) => {
 
         const eventTypesWithUrls = eventTypes.map(et => ({
             ...et,
-            bookingUrl: `${process.env.FRONTEND_URL || 'http://localhost:5174'}/book/${et.slug}`
+            bookingUrl: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/book/${et.slug}`
         }));
 
         res.json(eventTypesWithUrls);
@@ -76,7 +76,7 @@ const getEventTypeById = async (req, res) => {
 
         res.json({
             ...eventType,
-            bookingUrl: `${process.env.FRONTEND_URL || 'http://localhost:5174'}/book/${eventType.slug}`
+            bookingUrl: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/book/${eventType.slug}`
         });
     } catch (error) {
         console.error('Error fetching event type:', error);
@@ -99,7 +99,7 @@ const getEventTypeBySlug = async (req, res) => {
 
         res.json({
             ...eventType,
-            bookingUrl: `${process.env.FRONTEND_URL || 'http://localhost:5174'}/book/${eventType.slug}`
+            bookingUrl: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/book/${eventType.slug}`
         });
     } catch (error) {
         console.error('Error fetching event type:', error);
@@ -147,7 +147,7 @@ const updateEventType = async (req, res) => {
 
         res.json({
             ...eventType,
-            bookingUrl: `${process.env.FRONTEND_URL || 'http://localhost:5174'}/book/${eventType.slug}`
+            bookingUrl: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/book/${eventType.slug}`
         });
     } catch (error) {
         console.error('Error updating event type:', error);

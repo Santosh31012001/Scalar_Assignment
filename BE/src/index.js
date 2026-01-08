@@ -21,8 +21,11 @@ app.get('/', (req, res) => {
 // API Routes
 const eventTypesRoutes = require('./routes/eventTypes');
 const availabilityRoutes = require('./routes/availability');
+const bookingRoutes = require('./routes/booking');
 app.use('/api/event-types', eventTypesRoutes);
 app.use('/api/availability', availabilityRoutes);
+app.use('/api/bookings', bookingRoutes);
+
 
 
 // Database health check endpoint
