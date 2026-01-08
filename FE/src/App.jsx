@@ -3,6 +3,7 @@ import EventTypes from './pages/EventTypes';
 import Availability from './pages/Availability';
 import BookingPage from './pages/BookingPage';
 import BookingConfirmation from './pages/BookingConfirmation';
+import Meetings from './pages/Meetings';
 import './App.css';
 
 function App() {
@@ -27,6 +28,12 @@ function App() {
                   className="text-foreground hover:text-primary transition-colors"
                 >
                   Availability
+                </Link>
+                <Link
+                  to="/meetings"
+                  className="text-foreground hover:text-primary transition-colors"
+                >
+                  Meetings
                 </Link>
               </div>
             </div>
@@ -60,6 +67,7 @@ function App() {
           } />
           <Route path="/event-types" element={<EventTypes />} />
           <Route path="/availability" element={<Availability />} />
+          <Route path="/meetings" element={<Meetings />} />
           <Route path="/book/:slug" element={<BookingPage />} />
           <Route path="/booking/confirmation/:id" element={<BookingConfirmation />} />
         </Routes>
