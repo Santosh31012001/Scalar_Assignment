@@ -10,7 +10,13 @@ const PORT = process.env.PORT || 5000;
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 // Middleware
-app.use(cors());
+// Middleware
+app.use(cors(
+    {
+        origin: "https://scalar-assignment-eight.vercel.app/",
+        credentials: true
+    }
+));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
