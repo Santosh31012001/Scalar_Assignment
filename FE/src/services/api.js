@@ -31,7 +31,8 @@ export const bookingAPI = {
     getAvailableSlots: (slug, date) => api.get(`/api/bookings/available-slots/${slug}?date=${date}`),
     create: (data) => api.post('/api/bookings', data),
     getById: (id) => api.get(`/api/bookings/${id}`),
+    getAll: (filter) => api.get(`/api/bookings${filter ? `?filter=${filter}` : ''}`),
+    cancel: (id) => api.patch(`/api/bookings/${id}/cancel`),
 };
-
 
 export default api;

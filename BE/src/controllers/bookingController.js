@@ -304,8 +304,82 @@ const getBookingById = async (req, res) => {
     }
 };
 
+// Get all bookings with optional filter
+const getAllBookings = async (req, res) => {
+    try {
+        const { filter } = req.query; // upcoming, past, or all
+        const now = new Date();
+
+        let whereClause = {};
+
+        if (filter === 'upcoming') {
+            whereClause = {
+                startTime: { gte: now },
+                status: 'confirmed'
+            };
+        } else if (filter === 'past') {
+            whereClause = {
+                startTime: { lt: now }
+            };
+        }
+        // If filter is 'all' or not provided, no additional where clause
+
+        const bookings = await prisma.booking.findMany({
+            where: whereClause,
+            include: {
+                eventType: true
+            },
+            orderBy: {
+                startTime: filter === 'past' ? 'desc' : 'asc'
+            }
+        });
+
+        res.json(bookings);
+    } catch (error) {
+        console.error('Error fetching bookings:', error);
+        res.status(500).json({ error: 'Failed to fetch bookings' });
+    }
+};
+
+// Cancel a booking
+const cancelBooking = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        // Check if booking exists
+        const existing = await prisma.booking.findUnique({
+            where: { id }
+        });
+
+        if (!existing) {
+            return res.status(404).json({ error: 'Booking not found' });
+        }
+
+        // Check if already cancelled
+        if (existing.status === 'cancelled') {
+            return res.status(400).json({ error: 'Booking is already cancelled' });
+        }
+
+        // Update booking status to cancelled
+        const booking = await prisma.booking.update({
+            where: { id },
+            data: { status: 'cancelled' },
+            include: {
+                eventType: true
+            }
+        });
+
+        res.json(booking);
+    } catch (error) {
+        console.error('Error cancelling booking:', error);
+        res.status(500).json({ error: 'Failed to cancel booking' });
+    }
+};
+
 module.exports = {
     getAvailableSlots,
     createBooking,
-    getBookingById
+    getBookingById,
+    getAllBookings,
+    cancelBooking
 };
